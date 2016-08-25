@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>detached dom</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+
+    <button id="button">button</button>
+
+    <script>
+      var buttonEl = document.getElementById('button');
+
+      buttonEl.addEventListener('click', removeButton);
+
+      function removeButton() {
+        document.body.removeChild(document.getElementById('button'));
+      }
+    </script>
+  </body>
+</html>
