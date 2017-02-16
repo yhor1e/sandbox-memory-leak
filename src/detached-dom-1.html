@@ -8,8 +8,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
+    <h1>Detached DOM patterns</h1>
+    <h2>pattern 1 (not leak)</h2>
+    <ul>
+      <li>use `document.createElement`</li>
+      <li>and assign one variable</li>
+    </ul>
+    <button id="b1">create detached dom (id="b1")</button>
+    <pre><code>
+      var detachedDom;
+      document.getElementById('b1').addEventListener('click', function(){
+        detachedDom = document.createElement('div')
+        console.count('created Detached DOM')
+      })
+    </code></pre>
     <script>
-      var detachedDom = document.createElement('div');
+      var detachedDom;
+      document.getElementById('b1').addEventListener('click', function(){
+        detachedDom = document.createElement('div')
+        console.count('created Detached DOM')
+      })
+    </script>
+
+    <h2>pattern 2 (leak)</h2>
+    <ul>
+      <li>use `document.createElement`</li>
+      <li>and assign array</li>
+    </ul>
+    <button id="b2">create detached dom(id="b2")</button>
+    <pre><code>
+      var detachedDoms = []
+      document.getElementById('b2').addEventListener('click', function(){
+        detachedDoms.push(document.createElement('div'))
+        console.count('created Detached DOM')
+      })
+    </code></pre>
+    <script>
+      var detachedDoms = []
+      document.getElementById('b2').addEventListener('click', function(){
+        detachedDoms.push(document.createElement('div'))
+        console.count('created Detached DOM')
+      })
     </script>
   </body>
 </html>
